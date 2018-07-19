@@ -1,0 +1,27 @@
+{
+  "name": "protractor_js",
+  "version": "1.0.0",
+  "description": "first steps in testing with protractor framework",
+  "main": "index.js",
+  "scripts": {
+    "prestart-webdriver": "webdriver-manager update",
+    "start-webdriver": "webdriver-manager start",
+    "protractor": "protractor conf.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarneyenkaDzmitry/protractor_js.git"
+  },
+  "keywords": [
+    "protractor"
+  ],
+  "author": "Dzmitry_Karneyenka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KarneyenkaDzmitry/protractor_js/issues"
+  },
+  "homepage": "https://github.com/KarneyenkaDzmitry/protractor_js#readme",
+  "dependencies": {},
+  "devDependencies": {}
+}
