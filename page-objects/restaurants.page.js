@@ -7,6 +7,7 @@ class Restaurants {
         this.filterButtons = $$('button[id*=tagsFilter]');
         this.filterResults = $$('div.result');
     }
+    
     filter(cousine, price, meal){
         const options = [cousine, price, meal]; 
         this.filterButtons.map((elem, ind) => {
