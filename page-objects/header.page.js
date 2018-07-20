@@ -6,7 +6,7 @@ class Header {
         this.findReservationReference = $('#unsignedIn-guest-menu > li:nth-child(1) > a');
         this.hotel = $('a[class*=hotel]');
         this.restaurants = $('a[class*=restaurants]');
-        
+        this.searchButton = $('*[aria-label*="open search"]');
 
     }
     goToReservation() {
@@ -19,7 +19,9 @@ class Header {
     chooseRestaurants() {
         return this.restaurants.click();
     }
-    
+    openSearchBox() {
+        this.searchButton.click();
+    }
 }
 
 module.exports = new Header();

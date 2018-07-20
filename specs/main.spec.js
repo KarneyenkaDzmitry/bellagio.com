@@ -3,6 +3,7 @@ const header = require('../page-objects/header.page');
 const reservation = require('../page-objects/reservation.page');
 const hotel = require('../page-objects/hotel.page');
 const restaurants = require('../page-objects/restaurants.page');
+const search = require('../page-objects/search.page');
 describe('bellagio resource', () => {
 
     beforeEach(function () {
@@ -41,9 +42,16 @@ describe('bellagio resource', () => {
             expect(restaurants.pageTitle.getText()).toEqual('RESTAURANTS');
             expect(restaurants.filterResults.count()).toEqual(1);
             restaurants.getListOfRestaurants()
-                .then((list) => expect(list.indexOf('LAGO BY JULIAN SERRANO')>-1).toEqual(true));
+                .then((list) => expect(list.indexOf('LAGO BY JULIAN SERRANO') > -1).toEqual(true));
 
         });
+ 
+    it('should show search page with at least two elements: search field, disabled "Search button"', ()=>{
+        header.openSearchBox();
+        expect(search.searchField.isPresent()).toEqual(true);
+        expect(search.searchButton.isEnabled ()).toEqual(false);
+    });
 
+    
 
 });

@@ -9,7 +9,6 @@ class Reservation {
     chooseRoomReservation() {
         this.roomReservation.click();
     }
-    
 }
 
 module.exports = new Reservation();
