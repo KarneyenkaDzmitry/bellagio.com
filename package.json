@@ -6,7 +6,7 @@
   "scripts": {
     "prestart-webdriver": "webdriver-manager update",
     "start-webdriver": "webdriver-manager start",
-    "protractor": "protractor conf.js",
+    "start": "protractor conf.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
