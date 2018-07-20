@@ -2,6 +2,7 @@
 const header = require('../page-objects/header.page');
 const reservation = require('../page-objects/reservation.page');
 const hotel = require('../page-objects/hotel.page');
+const restaurants = require('../page-objects/restaurants.page');
 describe('bellagio resource', () => {
 
     beforeEach(function () {
@@ -26,5 +27,23 @@ describe('bellagio resource', () => {
         expect(hotel.pageTitle.getText()).toEqual('HOTEL ROOMS & SUITES');
         expect(hotel.results.isPresent()).toBe(true);
     });
+
+    it('should have title "RESTAURANTS" and results wrapper', () => {
+        header.chooseRestaurants();
+        expect(restaurants.pageTitle.getText()).toEqual('RESTAURANTS');
+        expect(restaurants.resultsWrapper.isPresent()).toBe(true);
+    });
+
+    it('should show "LAGO by Julian Serrano" in results after choosing filters parameters: cousine = Italian' +
+        'price = Clear, meal = Breakfast And Brunch', () => {
+            header.chooseRestaurants();
+            restaurants.filter('Italian', 'Clear', 'Breakfast and Brunch')
+            expect(restaurants.pageTitle.getText()).toEqual('RESTAURANTS');
+            expect(restaurants.filterResults.count()).toEqual(1);
+            restaurants.getListOfRestaurants()
+                .then((list) => expect(list.indexOf('LAGO BY JULIAN SERRANO')>-1).toEqual(true));
+
+        });
+
 
 });
