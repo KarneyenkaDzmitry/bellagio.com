@@ -1,5 +1,6 @@
 'use strict';
 const EC = protractor.ExpectedConditions;
+
 class Search {
     constructor() {
         this.searchField = element(by.model('globalSearchKeyword'));
@@ -18,7 +19,6 @@ class Search {
     getFirstResultTitle() {
         return this.searchResults.$('h2').getText();
     }
-
 }
 
 module.exports = new Search();

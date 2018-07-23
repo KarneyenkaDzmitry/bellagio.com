@@ -1,20 +1,14 @@
 'use strict';
 
-const header = require('../page-objects/header.page');
-const reservation = require('../page-objects/reservation.page');
-const hotel = require('../page-objects/hotel.page');
-const restaurants = require('../page-objects/restaurants.page');
-const search = require('../page-objects/search.page');
-const entertainment = require('../page-objects/entertainment.page');
-
 describe('bellagio resource', () => {
+    const header = require('../page-objects/header.page');
 
     beforeEach(function () {
         browser.get('https://www.bellagio.com');
     });
 
     describe('Tests of restaurant service', () => {
-
+        const restaurants = require('../page-objects/restaurants.page');
         it('should have title "RESTAURANTS" and results wrapper', () => {
             header.chooseRestaurants();
             expect(restaurants.pageTitle.getText()).toEqual('RESTAURANTS');
@@ -34,6 +28,8 @@ describe('bellagio resource', () => {
     });
 
     describe('Reservation service', () => {
+        const reservation = require('../page-objects/reservation.page');
+
         it('should have a text - \"Find Your Reservation\" and form with 5 inputs', () => {
             header.goToReservation();
             expect(reservation.accountPageTitle.getText()).toEqual('Find Your Reservation');
@@ -49,6 +45,8 @@ describe('bellagio resource', () => {
     });
 
     describe('Search service tests', () => {
+        const search = require('../page-objects/search.page');
+
         it('should show search page with at least two elements: search field, disabled "Search button"', () => {
             header.openSearchBox();
             expect(search.searchField.isPresent()).toEqual(true);
@@ -76,6 +74,8 @@ describe('bellagio resource', () => {
     });
 
     describe('Hotel servise tests', () => {
+        const hotel = require('../page-objects/hotel.page');
+
         it('should have title "HOTEL ROOMS & SUITES" and results wrapper', () => {
             header.chooseHotel();
             expect(hotel.pageTitle.getText()).toEqual('HOTEL ROOMS & SUITES');
@@ -84,6 +84,8 @@ describe('bellagio resource', () => {
     });
 
     describe('Entertainment service tests', () => {
+        const entertainment = require('../page-objects/entertainment.page');
+
         it('it should show entertament page with text "ENTERTAINMENT"', () => {
             header.chooseEntertainment();
             expect(entertainment.pageTitle.getText()).toEqual('ENTERTAINMENT');
