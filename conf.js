@@ -1,8 +1,8 @@
 'use strict';
 exports.config = {
+    getPageTimeout: 60000,
     framework: 'jasmine',
     seleniumAddress: 'http://localhost:4444/wd/hub',
-    getPageTimeout: 60000,
     allScriptsTimeout: 500000,
     specs: ['./specs/*spec.js'],
     onPrepare: () => {

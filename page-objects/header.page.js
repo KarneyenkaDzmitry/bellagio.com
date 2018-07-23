@@ -7,7 +7,7 @@ class Header {
         this.hotel = $('a[class*=hotel]');
         this.restaurants = $('a[class*=restaurants]');
         this.searchButton = $('*[aria-label*="open search"]');
-
+        this.entertainment = $('a[class*=entertainment]');
     }
     goToReservation() {
         return this.guestServicesButton.click()
@@ -19,8 +19,12 @@ class Header {
     chooseRestaurants() {
         return this.restaurants.click();
     }
+
+    chooseEntertainment() {
+        return this.entertainment.click();
+    }
     openSearchBox() {
-        this.searchButton.click();
+        return this.searchButton.click();
     }
 }
 

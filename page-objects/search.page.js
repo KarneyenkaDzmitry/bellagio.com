@@ -1,5 +1,5 @@
 'use strict';
-
+const EC = protractor.ExpectedConditions;
 class Search {
     constructor() {
         this.searchField = element(by.model('globalSearchKeyword'));
@@ -8,12 +8,15 @@ class Search {
         this.resultsWrapper = $('#results-wrapper');
         this.searchResults = $('[class*=search-results]');
         this.noResult= $('.no-result');
-        //.no-result
     }
     find(text) {
         return this.searchField.sendKeys(text)
-        .then(()=>browser.driver.sleep(3000))
+        .then(()=>browser.wait(EC.elementToBeClickable(this.searchButton), 5000))
         .then(()=>this.searchButton.click());
+    }
+
+    getFirstResultTitle() {
+        return this.searchResults.$('h2').getText();
     }
 
 }
