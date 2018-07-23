@@ -13,10 +13,11 @@ class Restaurants {
         this.filterButtons.map((elem, ind) => {
             if (options[ind]!=='Clear'){
             const opt = `//a[text()="${options[ind]}"]`;
-            browser.driver.sleep(1000)
+            browser.wait(ec.elementToBeClickable(elem), 5000)
             .then(()=>elem.click())
-            .then(()=>browser.driver.sleep(1000))
-            .then(()=>elem.element(by.xpath(opt)).click());
+            .then(()=>elem.element(by.xpath(opt)))
+            .then((element)=>{browser.wait(ec.visibilityOf(element), 5000); return element})
+            .then((element)=>element.click());
         }});
     };
 

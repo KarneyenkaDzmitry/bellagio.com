@@ -1,29 +1,31 @@
 'use strict';
-
+const helper = require('../page-objects/utils/page.helper');
+let page;
+const header = require('../page-objects/header.page');
 describe('bellagio resource', () => {
-    const header = require('../page-objects/header.page');
 
     beforeEach(function () {
         browser.get('https://www.bellagio.com');
+        page = helper.getPage('header');
     });
 
-    describe('Tests of restaurant service', () => {
-        const restaurants = require('../page-objects/restaurants.page');
+    describe('Tests of restaurants service', () => {
         it('should have title "RESTAURANTS" and results wrapper', () => {
-            header.chooseRestaurants();
-            expect(restaurants.pageTitle.getText()).toEqual('RESTAURANTS');
-            expect(restaurants.resultsWrapper.isPresent()).toBe(true);
+            page.chooseRestaurants();
+            page = helper.getPage('restaurants');
+            expect(page.pageTitle.getText()).toEqual('RESTAURANTS');
+            expect(page.resultsWrapper.isPresent()).toBe(true);
         });
 
         it('should show "LAGO by Julian Serrano" in results after choosing filters parameters: cousine = Italian' +
             'price = Clear, meal = Breakfast And Brunch', () => {
-                header.chooseRestaurants();
-                restaurants.filter('Italian', 'Clear', 'Breakfast and Brunch')
-                expect(restaurants.pageTitle.getText()).toEqual('RESTAURANTS');
-                expect(restaurants.filterResults.count()).toEqual(1);
-                restaurants.getListOfRestaurants()
+                page.chooseRestaurants();
+                page = helper.getPage('restaurants');
+                page.filter('Italian', 'Clear', 'Breakfast and Brunch')
+                expect(page.pageTitle.getText()).toEqual('RESTAURANTS');
+                expect(page.filterResults.count()).toEqual(1);
+                page.getListOfRestaurants()
                     .then((list) => expect(list.indexOf('LAGO BY JULIAN SERRANO') > -1).toEqual(true));
-
             });
     });
 

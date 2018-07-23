@@ -1,5 +1,4 @@
 'use strict';
-const EC = protractor.ExpectedConditions;
 
 class Search {
     constructor() {
@@ -12,7 +11,7 @@ class Search {
     }
     find(text) {
         return this.searchField.sendKeys(text)
-        .then(()=>browser.wait(EC.elementToBeClickable(this.searchButton), 5000))
+        .then(()=>browser.wait(ec.elementToBeClickable(this.searchButton), 5000))
         .then(()=>this.searchButton.click());
     }
 
