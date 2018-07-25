@@ -1,6 +1,6 @@
 'use strict';
 
-class Hotel{
+class Hotel {
     constructor() {
         this.pageTitle = $('*[class*=title] h1');
         this.results = $('#results-wrapper');

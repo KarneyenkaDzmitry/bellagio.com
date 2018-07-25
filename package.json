@@ -4,10 +4,11 @@
   "description": "first steps in testing with protractor framework",
   "main": "index.js",
   "scripts": {
-    "prestart-webdriver": "webdriver-manager update",
-    "start-webdriver": "webdriver-manager start",
-    "start": "protractor conf.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "wd-up": "webdriver-manager update",
+    "wd-st": "webdriver-manager start",
+    "test": "protractor conf.js",
+    "lint": "eslint ./ --fix",
+    "postinstall": "webdriver-manager update"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,23 @@
     "url": "https://github.com/KarneyenkaDzmitry/protractor_js/issues"
   },
   "homepage": "https://github.com/KarneyenkaDzmitry/protractor_js#readme",
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "jasmine": "^3.1.0",
+    "protractor": "^5.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.2.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-angular": "^0.5.0",
+    "eslint-config-google": "^0.9.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-angular": "^3.3.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jasmine": "^2.10.1",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-standard": "^3.1.0"
+  }
 }

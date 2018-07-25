@@ -1,4 +1,5 @@
 'use strict';
+
 exports.config = {
     getPageTimeout: 60000,
     framework: 'jasmine',
@@ -9,12 +10,12 @@ exports.config = {
         browser.driver.manage().window().maximize();
         browser.driver.manage().timeouts().implicitlyWait(20000);
         browser.waitForAngularEnabled(true);
-        global.ec=protractor.ExpectedConditions;
+        global.ec = protractor.ExpectedConditions;
     },
     capabilities: {
-        'browserName': 'chrome',
-        'chromeOptions': {
-            'args': ['disable-infobars']
+        browserName: 'chrome',
+        chromeOptions: {
+            args: ['disable-infobars']
         }
     }
-}
+};

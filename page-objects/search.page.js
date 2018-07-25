@@ -7,12 +7,12 @@ class Search {
         this.searchTitle = $('.site-search-header');
         this.resultsWrapper = $('#results-wrapper');
         this.searchResults = $('[class*=search-results]');
-        this.noResult= $('.no-result');
+        this.noResult = $('.no-result');
     }
     find(text) {
         return this.searchField.sendKeys(text)
-        .then(()=>browser.wait(ec.elementToBeClickable(this.searchButton), 5000))
-        .then(()=>this.searchButton.click());
+            .then(() => browser.wait(ec.elementToBeClickable(this.searchButton), 5000))
+            .then(() => this.searchButton.click());
     }
 
     getFirstResultTitle() {
