@@ -12,12 +12,12 @@ exports.config = {
         print: function() {
         }
     },
-    logLevel: 'WARN',
+    logLevel: 'ERROR',
     seleniumAddress: 'http://localhost:4444/wd/hub',
     allScriptsTimeout: 500000,
-    specs: ['../specs/*spec.js'],
+    specs: ['../specs/**/*spec.js'],
     onPrepare: () => {
-        logger.info('Browser starts in maximize size');
+        logger.info('Browser starts in maximize size for running tests');
         browser.driver.manage().window().maximize();
         browser.driver.manage().timeouts().implicitlyWait(20000);
         browser.waitForAngularEnabled(true);
@@ -36,5 +36,11 @@ exports.config = {
         chromeOptions: {
             args: ['disable-infobars', '--test-type']
         }
+    },
+    beforeLaunch: ()=>{
+        logger.info('Get started!');
+    },
+    afterLaunch: ()=>{
+        logger.info('Done');
     }
 };

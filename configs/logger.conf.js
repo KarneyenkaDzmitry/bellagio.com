@@ -17,18 +17,18 @@ const logger = createLogger({
         myFormat
     ),
     transports: [
-        new transports.Console({
-            colorize: true
-        }),
-        new transports.File({
-            filename: './logs/combined.log',
-             maxsize: 1000
+        // new transports.Console({
+        //     colorize: true
+        // }),
+        new (transports.File)({
+            filename: './logs/combined.log'
+            //  maxsize: 1000
             }),
         new (transports.File)({
             name: 'error-log',
             filename: './logs/error.log',
-            level: 'error',
-            maxsize: 1000
+            level: 'error'
+            //maxsize: 1000
         })
     ]
 });

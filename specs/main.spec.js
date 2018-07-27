@@ -1,17 +1,26 @@
+'use strict';
 
+const { logger } = require('../configs/logger.conf');
 const helper = require('../page-objects/utils/page.helper');
-let page;
-const header = require('../page-objects/header.page');
+let page = helper.getPage('header');
+
 describe('bellagio resource', () => {
+    const startPage = 'https://www.bellagio.com';
     beforeEach(() => {
-        browser.get('https://www.bellagio.com');
+        browser.get(startPage);
+        logger.info(`In block beforeEach. Browser opens page ${startPage}`);
         page = helper.getPage('header');
     });
 
     describe('Tests of restaurants service', () => {
-        it('should have title "RESTAURANTS" and results wrapper', () => {
+        beforeEach(() => {
+            logger.info(`In block beforeEach of tests of restaurants service. Browser opens page of restaurants`);
             page.chooseRestaurants();
             page = helper.getPage('restaurants');
+        });
+        it('should have title "RESTAURANTS" and results wrapper', () => {
+            logger.info('In block it. Check title and results wrapper of restaurants` page');
+
 
             expect(page.pageTitle.getText()).toEqual('RESTAURANTS');
             expect(page.resultsWrapper.isPresent()).toBe(true);
@@ -19,67 +28,75 @@ describe('bellagio resource', () => {
 
         it('should show "LAGO by Julian Serrano" in results after choosing filters parameters: cousine = Italian, ' +
             'price = Clear, meal = Breakfast And Brunch', () => {
-            page.chooseRestaurants();
-            page = helper.getPage('restaurants');
-            page.filter('Italian', 'Clear', 'Breakfast and Brunch');
+                logger.info('In block it. fileter of restaurants` page');
+                page.filter('Italian', 'Clear', 'Breakfast and Brunch');
 
-            expect(page.pageTitle.getText()).toEqual('RESTAURANTS');
-            expect(page.filterResults.count()).toEqual(1);
-            page.getListOfRestaurants()
-                .then((list) =>
+                expect(page.pageTitle.getText()).toEqual('RESTAURANTS');
+                expect(page.filterResults.count()).toEqual(1);
+                page.getListOfRestaurants()
+                    .then((list) =>
 
-                    expect(list.indexOf('LAGO BY JULIAN SERRANO') > -1).toEqual(true));
-        });
+                        expect(list.indexOf('LAGO BY JULIAN SERRANO') > -1).toEqual(true));
+            });
     });
 
     describe('Reservation service', () => {
-        const reservation = require('../page-objects/reservation.page');
 
-        it('should have a text - "Find Your Reservation" and form with 5 inputs', () => {
-            header.goToReservation();
-
-            expect(reservation.accountPageTitle.getText()).toEqual('Find Your Reservation');
-            expect(reservation.accountForm.getAttribute('method')).toEqual('post');
+        beforeEach(()=>{
+            logger.info(`In block beforeEach of tests of reservation service. Browser opens page of reservation`);
+            page.goToReservation();
+            page = helper.getPage('reservation');
         });
 
-        it('should have four options including default option with text - "What type of reservation"', () => {
-            header.goToReservation();
+        it('should have a text - "Find Your Reservation" and form with 5 inputs', () => {
+            logger.info('In block it. Reservation page should have a text - "Find Your Reservation" and form with 5 inputs');
 
-            expect(reservation.roomReservation.isSelected()).toBe(false);
-            reservation.chooseRoomReservation();
+            expect(page.accountPageTitle.getText()).toEqual('Find Your Reservation');
+            expect(page.accountForm.getAttribute('method')).toEqual('post');
+        });
 
-            expect(reservation.roomReservation.isSelected()).toBe(true);
+        it('can choose room in field - "reservation"', () => {
+            logger.info('In block it. Reservation page, choosing room in field - "reservation"');
+
+            expect(page.roomReservation.isSelected()).toBe(false);
+            page.chooseRoomReservation();
+
+            expect(page.roomReservation.isSelected()).toBe(true);
         });
     });
 
     describe('Search service tests', () => {
-        const search = require('../page-objects/search.page');
+        beforeEach(()=>{
+            logger.info(`In block beforeEach of tests of search service. Browser opens page of search`);
+            page.openSearchBox();
+            page=helper.getPage('search');
+        });
 
-        it('should show search page with at least two elements: search field, disabled "Search button"', () => {
-            header.openSearchBox();
+        it('should include at least two elements: search field, disabled "Search button"', () => {
+            logger.info('In block it. Search page should include at least two elements: search field, disabled "Search button"');
 
-            expect(search.searchField.isPresent()).toEqual(true);
-            expect(search.searchButton.isEnabled()).toEqual(false);
+            expect(page.searchField.isPresent()).toEqual(true);
+            expect(page.searchButton.isEnabled()).toEqual(false);
         });
 
         it('if search service doesn\'t find anything, it should show ' +
             '"Sorry, your search for [serched text] did not return any results. Please try different search terms or browse our sitemap."', () => {
-            header.openSearchBox();
-            const word = 'dusolei';
-            search.find(word)
-                .then(() => browser.refresh())
-                .then(() => search.noResult.getText())
-                .then((text) =>
+            logger.info('In block it. if search service doesn\'t find anything');
+                const word = 'dusolei';
+                page.find(word)
+                    .then(() => browser.refresh())
+                    .then(() => page.noResult.getText())
+                    .then((text) =>
 
-                    expect(text).toEqual(`Sorry, your search for ${word} did not return any results. Please try different search terms or browse our sitemap.`));
-        });
+                        expect(text).toEqual(`Sorry, your search for ${word} did not return any results. Please try different search terms or browse our sitemap.`));
+            });
 
-        it('When I typy "du soleil" I have to see the page of results with the fitst result`s title contains text "CIRQUE DU SOLEIL"', () => {
-            header.openSearchBox();
+        it('When I type "du soleil" I have to see the page of results with the fitst result`s title contains text "CIRQUE DU SOLEIL"', () => {
+            logger.info('In block it. Check search results');
             const word = 'du soleil';
-            search.find(word)
+            page.find(word)
                 .then(() => browser.refresh())
-                .then(() => search.getFirstResultTitle())
+                .then(() => page.getFirstResultTitle())
                 .then((text) =>
 
                     expect(text.indexOf('CIRQUE DU SOLEIL') > -1).toEqual(true));
@@ -87,30 +104,38 @@ describe('bellagio resource', () => {
     });
 
     describe('Hotel servise tests', () => {
-        const hotel = require('../page-objects/hotel.page');
+        beforeEach(()=>{
+            logger.info(`In block beforeEach of tests of hotel service. Browser opens hotel page`);
+            page.chooseHotel();
+            page = helper.getPage('hotel');
+        });
 
         it('should have title "HOTEL ROOMS & SUITES" and results wrapper', () => {
-            header.chooseHotel();
+            logger.info('In block it. Check name of hotel page');
 
-            expect(hotel.pageTitle.getText()).toEqual('HOTEL ROOMS & SUITES');
-            expect(hotel.results.isPresent()).toBe(true);
+            expect(page.pageTitle.getText()).toEqual('HOTEL ROOMS & SUITES');
+            expect(page.results.isPresent()).toBe(true);
         });
     });
 
     describe('Entertainment service tests', () => {
-        const entertainment = require('../page-objects/entertainment.page');
+        beforeEach(()=>{
+            logger.info(`In block beforeEach of tests of entertainment service. Browser opens entertainment page`);
+            page.chooseEntertainment();
+            page = helper.getPage('entertainment');
+        });
 
         it('it should show entertament page with text "ENTERTAINMENT"', () => {
-            header.chooseEntertainment();
+            logger.info('In block it. Check name of entertainment page');
 
-            expect(entertainment.pageTitle.getText()).toEqual('ENTERTAINMENT');
-            expect(entertainment.resultsWrapper.isPresent()).toBe(true);
+            expect(page.pageTitle.getText()).toEqual('ENTERTAINMENT');
+            expect(page.resultsWrapper.isPresent()).toBe(true);
         });
 
         it('entertainment page should contain default component base with title "WHILE AT BELLAGIO"', () => {
-            header.chooseEntertainment();
+            logger.info('In block it. Check location of  base component on entertainment page with title "WHILE AT BELLAGIO"');
 
-            expect(entertainment.getDefaultComponentTitle()).toEqual('WHILE AT BELLAGIO');
+            expect(page.getDefaultComponentTitle()).toEqual('WHILE AT BELLAGIO');
         });
     });
 });
