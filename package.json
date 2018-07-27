@@ -15,7 +15,8 @@
     "url": "git+https://github.com/KarneyenkaDzmitry/protractor_js.git"
   },
   "keywords": [
-    "protractor"
+    "protractor",
+    "jasmine"
   ],
   "author": "Dzmitry_Karneyenka",
   "license": "ISC",
@@ -25,14 +26,11 @@
   "homepage": "https://github.com/KarneyenkaDzmitry/protractor_js#readme",
   "dependencies": {
     "jasmine": "^3.1.0",
+    "jasmine-spec-reporter": "^4.2.1",
     "protractor": "^5.4.0"
   },
   "devDependencies": {
     "eslint": "^5.2.0",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-config-angular": "^0.5.0",
-    "eslint-config-google": "^0.9.1",
-    "eslint-config-standard": "^11.0.0",
     "eslint-plugin-angular": "^3.3.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jasmine": "^2.10.1",

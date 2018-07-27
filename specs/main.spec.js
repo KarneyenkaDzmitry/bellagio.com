@@ -17,7 +17,7 @@ describe('bellagio resource', () => {
             expect(page.resultsWrapper.isPresent()).toBe(true);
         });
 
-        it('should show "LAGO by Julian Serrano" in results after choosing filters parameters: cousine = Italian' +
+        it('should show "LAGO by Julian Serrano" in results after choosing filters parameters: cousine = Italian, ' +
             'price = Clear, meal = Breakfast And Brunch', () => {
             page.chooseRestaurants();
             page = helper.getPage('restaurants');
