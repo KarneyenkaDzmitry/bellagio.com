@@ -8,6 +8,7 @@
     "wd-st": "webdriver-manager start",
     "test": "protractor ./configs/conf.js",
     "lint": "eslint ./ --fix",
+    "preinstall": "mkdir logs",
     "postinstall": "webdriver-manager update",
     "server" : "start cmd /k \"node_modules\\.bin\\webdriver-manager start\""
   },

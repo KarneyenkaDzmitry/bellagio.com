@@ -1,5 +1,5 @@
 'use strict';
-const logger = require('./logger.conf.js').logger
+const logger = require('./logger.conf.js').logger;
 let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 
 exports.config = {
@@ -27,14 +27,14 @@ exports.config = {
                 displayStacktrace: true
             },
             summary: {
-              displayDuration: false
+                displayDuration: true
             }
         }));
     },
     capabilities: {
         browserName: 'chrome',
         chromeOptions: {
-            args: ['disable-infobars','--test-type']
+            args: ['disable-infobars', '--test-type']
         }
     }
 };

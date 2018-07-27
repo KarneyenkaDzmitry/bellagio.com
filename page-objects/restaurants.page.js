@@ -12,7 +12,7 @@ class Restaurants {
         const options = [cousine, price, meal];
         this.filterButtons.map((elem, ind) => {
             if (options[ind] !== 'Clear') {
-                const opt = `//a[text()="${options[ind]}"]`;
+                const opt = `//a[text()="${options[ind]}"][@class]`;
                 browser.wait(ec.elementToBeClickable(elem), 5000)
                     .then(() => elem.click())
                     .then(() => elem.element(by.xpath(opt)))
