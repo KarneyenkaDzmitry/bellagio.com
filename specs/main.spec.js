@@ -28,21 +28,21 @@ describe('bellagio resource', () => {
 
         it('should show "LAGO by Julian Serrano" in results after choosing filters parameters: cousine = Italian, ' +
             'price = Clear, meal = Breakfast And Brunch', () => {
-                logger.info('In block it. fileter of restaurants` page');
-                page.filter('Italian', 'Clear', 'Breakfast and Brunch');
+            logger.info('In block it. fileter of restaurants` page');
+            page.filter('Italian', 'Clear', 'Breakfast and Brunch');
 
-                expect(page.pageTitle.getText()).toEqual('RESTAURANTS');
-                expect(page.filterResults.count()).toEqual(1);
-                page.getListOfRestaurants()
-                    .then((list) =>
+            expect(page.pageTitle.getText()).toEqual('RESTAURANTS');
+            expect(page.filterResults.count()).toEqual(1);
+            page.getListOfRestaurants()
+                .then((list) =>
 
-                        expect(list.indexOf('LAGO BY JULIAN SERRANO') > -1).toEqual(true));
-            });
+                    expect(list.indexOf('LAGO BY JULIAN SERRANO') > -1).toEqual(true));
+        });
     });
 
     describe('Reservation service', () => {
 
-        beforeEach(()=>{
+        beforeEach(() => {
             logger.info(`In block beforeEach of tests of reservation service. Browser opens page of reservation`);
             page.goToReservation();
             page = helper.getPage('reservation');
@@ -66,10 +66,10 @@ describe('bellagio resource', () => {
     });
 
     describe('Search service tests', () => {
-        beforeEach(()=>{
+        beforeEach(() => {
             logger.info(`In block beforeEach of tests of search service. Browser opens page of search`);
             page.openSearchBox();
-            page=helper.getPage('search');
+            page = helper.getPage('search');
         });
 
         it('should include at least two elements: search field, disabled "Search button"', () => {
@@ -82,14 +82,14 @@ describe('bellagio resource', () => {
         it('if search service doesn\'t find anything, it should show ' +
             '"Sorry, your search for [serched text] did not return any results. Please try different search terms or browse our sitemap."', () => {
             logger.info('In block it. if search service doesn\'t find anything');
-                const word = 'dusolei';
-                page.find(word)
-                    .then(() => browser.refresh())
-                    .then(() => page.noResult.getText())
-                    .then((text) =>
+            const word = 'dusolei';
+            page.find(word)
+                .then(() => browser.refresh())
+                .then(() => page.noResult.getText())
+                .then((text) =>
 
-                        expect(text).toEqual(`Sorry, your search for ${word} did not return any results. Please try different search terms or browse our sitemap.`));
-            });
+                    expect(text).toEqual(`Sorry, your search for ${word} did not return any results. Please try different search terms or browse our sitemap.`));
+        });
 
         it('When I type "du soleil" I have to see the page of results with the fitst result`s title contains text "CIRQUE DU SOLEIL"', () => {
             logger.info('In block it. Check search results');
@@ -104,7 +104,7 @@ describe('bellagio resource', () => {
     });
 
     describe('Hotel servise tests', () => {
-        beforeEach(()=>{
+        beforeEach(() => {
             logger.info(`In block beforeEach of tests of hotel service. Browser opens hotel page`);
             page.chooseHotel();
             page = helper.getPage('hotel');
@@ -119,7 +119,7 @@ describe('bellagio resource', () => {
     });
 
     describe('Entertainment service tests', () => {
-        beforeEach(()=>{
+        beforeEach(() => {
             logger.info(`In block beforeEach of tests of entertainment service. Browser opens entertainment page`);
             page.chooseEntertainment();
             page = helper.getPage('entertainment');

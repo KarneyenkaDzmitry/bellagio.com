@@ -1,5 +1,5 @@
 'use strict';
-
+const { logger } = require('../configs/logger.conf');
 class Search {
     constructor() {
         this.searchField = element(by.model('globalSearchKeyword'));
@@ -12,7 +12,11 @@ class Search {
     find(text) {
         return this.searchField.sendKeys(text)
             .then(() => browser.wait(ec.elementToBeClickable(this.searchButton), 5000))
-            .then(() => this.searchButton.click());
+            .then(() => this.searchButton.click())
+            .catch(error => {
+                logger.error(`Inside function find(${text}) Search page`, error);
+                return error;
+            });
     }
 
     getFirstResultTitle() {

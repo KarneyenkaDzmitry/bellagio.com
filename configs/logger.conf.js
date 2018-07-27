@@ -1,7 +1,7 @@
 'use strict';
 
-const {createLogger, format, transports} = require('winston');
-const {combine, timestamp, label, printf} = format;
+const { createLogger, format, transports } = require('winston');
+const { combine, timestamp, label, printf } = format;
 
 const myFormat = printf(info => {
     return `${info.timestamp} [${info.label}] ${info.level}: ${info.message}`;
@@ -10,7 +10,7 @@ const myFormat = printf(info => {
 const logger = createLogger({
     level: 'info',
     format: combine(
-        label({label: 'bellagio.com'}),
+        label({ label: 'bellagio.com' }),
         timestamp({
             format: 'YYYY-MM-DD HH:mm:ss'
         }),
@@ -23,14 +23,14 @@ const logger = createLogger({
         new (transports.File)({
             filename: './logs/combined.log'
             //  maxsize: 1000
-            }),
+        }),
         new (transports.File)({
             name: 'error-log',
             filename: './logs/error.log',
             level: 'error'
-            //maxsize: 1000
+            // maxsize: 1000
         })
     ]
 });
 
-module.exports = {logger};
+module.exports = { logger };

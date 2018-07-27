@@ -239,7 +239,7 @@
         "no-unneeded-ternary": 2,
         "object-curly-spacing": [
             1,
-            "never"
+            "always"
         ],
         "operator-assignment": [
             1,

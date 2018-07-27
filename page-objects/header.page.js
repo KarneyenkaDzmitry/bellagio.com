@@ -10,7 +10,9 @@ class Header {
         this.entertainment = $('a[class*=entertainment]');
     }
     goToReservation() {
-        return this.guestServicesButton.click()
+        return browser.wait(ec.elementToBeClickable(this.guestServicesButton), 5000)
+            .then(() => this.guestServicesButton.click())
+            .then(() => browser.wait(ec.elementToBeClickable(this.findReservationReference), 5000))
             .then(() => this.findReservationReference.click());
     }
     chooseHotel() {

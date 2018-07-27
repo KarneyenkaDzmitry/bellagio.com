@@ -37,10 +37,10 @@ exports.config = {
             args: ['disable-infobars', '--test-type']
         }
     },
-    beforeLaunch: ()=>{
+    beforeLaunch: () => {
         logger.info('Get started!');
     },
-    afterLaunch: ()=>{
+    afterLaunch: () => {
         logger.info('Done');
     }
 };
