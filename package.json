@@ -6,9 +6,10 @@
   "scripts": {
     "wd-up": "webdriver-manager update",
     "wd-st": "webdriver-manager start",
-    "test": "protractor conf.js",
+    "test": "protractor ./configs/conf.js",
     "lint": "eslint ./ --fix",
-    "postinstall": "webdriver-manager update"
+    "postinstall": "webdriver-manager update",
+    "server" : "start cmd /k \"node_modules\\.bin\\webdriver-manager start\""
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,8 @@
   "dependencies": {
     "jasmine": "^3.1.0",
     "jasmine-spec-reporter": "^4.2.1",
-    "protractor": "^5.4.0"
+    "protractor": "^5.4.0",
+    "winston": "^3.0.0"
   },
   "devDependencies": {
     "eslint": "^5.2.0",

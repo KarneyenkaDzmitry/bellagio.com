@@ -1,5 +1,5 @@
 'use strict';
-
+const logger = require('./logger.conf.js').logger
 let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 
 exports.config = {
@@ -15,8 +15,9 @@ exports.config = {
     logLevel: 'WARN',
     seleniumAddress: 'http://localhost:4444/wd/hub',
     allScriptsTimeout: 500000,
-    specs: ['./specs/*spec.js'],
+    specs: ['../specs/*spec.js'],
     onPrepare: () => {
+        logger.info('Browser starts in maximize size');
         browser.driver.manage().window().maximize();
         browser.driver.manage().timeouts().implicitlyWait(20000);
         browser.waitForAngularEnabled(true);
