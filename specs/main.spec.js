@@ -7,7 +7,11 @@ let page = helper.getPage('header');
 describe('bellagio resource', () => {
     const startPage = 'https://www.bellagio.com';
     beforeEach(() => {
-        browser.get(startPage);
+        browser.get(startPage)
+            .catch(err => {
+                logger.err(`Error during loading page [${startPage}}`);
+                return err;
+            });
         logger.info(`In block beforeEach. Browser opens page ${startPage}`);
         page = helper.getPage('header');
     });
@@ -20,7 +24,6 @@ describe('bellagio resource', () => {
         });
         it('should have title "RESTAURANTS" and results wrapper', () => {
             logger.info('In block it. Check title and results wrapper of restaurants` page');
-
 
             expect(page.pageTitle.getText()).toEqual('RESTAURANTS');
             expect(page.resultsWrapper.isPresent()).toBe(true);

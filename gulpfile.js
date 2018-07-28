@@ -22,7 +22,7 @@ gulp.task('server', ['linter'], (done) => {
         ]));
     setTimeout(() => {
         done();
-    }, 3000);
+    }, 4000);
 });
 
 

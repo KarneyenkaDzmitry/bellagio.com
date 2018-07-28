@@ -19,7 +19,8 @@ class Header {
         return this.hotel.click();
     }
     chooseRestaurants() {
-        return this.restaurants.click();
+        return browser.wait(ec.presenceOf(this.guestServicesButton), 5000)
+            .then(() => this.restaurants.click());
     }
 
     chooseEntertainment() {
