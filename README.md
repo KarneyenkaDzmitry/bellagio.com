@@ -16,6 +16,7 @@ The application needs to have the following dependencies:
 Before start the program is supposed to run the command [npm install].<br> 
 It downloads needed modules and prepars the programm for start.<br>
 There is a list of modules and their versions:
+
     "gulp": "^3.9.1",
     "gulp-cli": "^2.0.1",
     "gulp-protractor": "^4.1.0",
@@ -28,7 +29,10 @@ There is a list of modules and their versions:
 
 ## Usage
 
-
+ Before start tests it is supposed to run webdriver server. Use the command [webdriver-manager start].
+ Or via npm script [npm run wd-st]
+ 
+ After server have started run tests via command [npm start]
 
 ### Author
 #### Dzmitry_Karneyenka, Republic of Belarus, Minsk 
