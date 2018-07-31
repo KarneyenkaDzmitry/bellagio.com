@@ -7,9 +7,10 @@
     "wd-up": "webdriver-manager update",
     "wd-st": "webdriver-manager start",
     "test": "protractor ./configs/conf.js",
+    "posttest": ".\\reports\\screenshots\\Bellagio.html",
     "start": "node ./node_modules/gulp/bin/gulp.js",
     "lint": "eslint ./ --fix",
-    "preinstall": "mkdir logs",
+    "preinstall": "mkdir logs ./reports/screenshots",
     "postinstall": "webdriver-manager update",
     "server": "start cmd /k \"node_modules\\.bin\\webdriver-manager start\""
   },
@@ -46,6 +47,8 @@
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-standard": "^3.1.0",
-    "gulp-shell": "^0.6.5"
+    "gulp-shell": "^0.6.5",
+    "protractor-jasmine2-screenshot-reporter": "^0.5.0",
+    "run-sequence": "^2.2.1"
   }
 }

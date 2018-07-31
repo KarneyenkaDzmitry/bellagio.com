@@ -1,6 +1,19 @@
 'use strict';
 const logger = require('./logger.conf.js').logger;
 let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
+const HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
+
+const reporter = new HtmlScreenshotReporter({
+    dest: './reports/screenshots',
+    filename: 'Bellagio.html',
+    cleanDestination: true,
+    showSummary: true,
+    showQuickLinks: true,
+    showConfiguration: false,
+    reportTitle: 'BELLAGIO.COM',
+    reportOnlyFailedSpecs: false,
+    captureOnlyFailedSpecs: false
+});
 
 exports.config = {
     getPageTimeout: 60000,
@@ -30,6 +43,7 @@ exports.config = {
                 displayDuration: true
             }
         }));
+        jasmine.getEnv().addReporter(reporter);
     },
     capabilities: {
         browserName: 'chrome',
@@ -39,8 +53,15 @@ exports.config = {
     },
     beforeLaunch: () => {
         logger.info('Get started!');
+        return new Promise(resolve => {
+            reporter.beforeLaunch(resolve);
+        });
     },
-    afterLaunch: () => {
+    afterLaunch: (exitCode) => {
         logger.info('Done');
+        return new Promise(resolve => {
+            reporter.afterLaunch(resolve.bind(this, exitCode));
+        });
+
     }
 };
