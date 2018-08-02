@@ -22,8 +22,9 @@ exports.config = {
         showColors: true,
         silent: true,
         defaultTimeoutInterval: 360000,
-        print: function() {
-        }
+        /* eslint-disable */
+        print: function() {}
+        /* eslint-enable */
     },
     logLevel: 'ERROR',
     seleniumAddress: 'http://localhost:4444/wd/hub',
@@ -60,7 +61,9 @@ exports.config = {
     afterLaunch: (exitCode) => {
         logger.info('Done');
         return new Promise(resolve => {
+            /* eslint-disable */
             reporter.afterLaunch(resolve.bind(this, exitCode));
+            /* eslint-enable */
         });
 
     }

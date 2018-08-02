@@ -6,12 +6,6 @@ let page = helper.getPage('header');
 
 describe('bellagio resource', () => {
     const startPage = 'https://www.bellagio.com';
-    // beforeAll(function() {
-    //     browser.forkedInstances.secondBrowser = browser.forkNewDriverInstance();
-    // });
-    // afterAll(function() {
-    //     browser.forkedInstances.secondBrowser = null;
-    // });
     beforeEach(() => {
         browser.get(startPage)
             .catch(err => {
